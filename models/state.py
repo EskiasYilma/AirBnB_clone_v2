@@ -31,8 +31,6 @@ class State(BaseModel, Base):
 
             return city_list
 
-
-
     def __init__(self, *args, **kwargs):
         """
         Initialize module
