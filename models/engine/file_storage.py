@@ -60,4 +60,7 @@ class FileStorage:
                 del FileStorage.__objects[key]
 
     def close(self):
+        """
+        Close the session
+        """
         self.reload()
