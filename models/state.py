@@ -12,13 +12,8 @@ from sqlalchemy.orm import relationship
 class State(BaseModel, Base):
     """State class"""
     __tablename__ = "states"
-    name = Column(String(128), nullable=False)
-
-    cities = relationship("City", backref="state",
-                          cascade="all, delete, delete-orphan")
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    name = Column(String(128),
+                  nullable=False) if getenv('HBNB_TYPE_STORAGE') == 'db' else ""
 
     if getenv("HBNB_TYPE_STORAGE") != "db":
         @property
@@ -31,3 +26,9 @@ class State(BaseModel, Base):
                     city_list.append(all_cities[c_id])
 
             return city_list
+    else:
+        cities = relationship("City", backref="state",
+                              cascade="all, delete, delete-orphan")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
