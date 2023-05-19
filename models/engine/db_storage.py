@@ -35,7 +35,10 @@ class DBStorage:
         if cls is None:
             return {obj.id: obj for cls in classes.values()
                     for obj in self.__session.query(cls)}
-        return {obj.id: obj for obj in self.__session.query(classes[cls])}
+        else:
+            if cls not in classes.values():
+                return
+            return {obj.id: obj for obj in self.__session.query(classes[cls])}
 
     def new(self, obj):
         """Add the object to the current database session"""
