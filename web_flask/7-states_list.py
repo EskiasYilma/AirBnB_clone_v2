@@ -15,15 +15,21 @@ def states_list():
     Route to display a HTML page
      (inside the tag BODY)
         H1 tag: “States”
-        UL tag: with the list of all State objects present in DBStorage sorted by name (A->Z) tip
+        UL tag: with the list of all State objects present \
+        in DBStorage sorted by name (A->Z) tip
             LI tag: description of one State: <state.id>: <B><state.name></B>
     """
     all_states = list(storage.all(State).values())
-    return render_template("7-states_list.html")
+    table = "States"
+    return render_template("7-states_list.html", table=table,
+                           all_states=all_states)
 
 
 @app.teardown_appcontext
 def teardown():
+    """
+    Closes the session
+    """
     storage.close()
 
 

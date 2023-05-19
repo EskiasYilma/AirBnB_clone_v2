@@ -16,7 +16,6 @@ class City(BaseModel, Base):
     else:
         state_id = ""
         name = ""
-        places = None
 
     def __init__(self, *args, **kwargs):
         """initializes city"""
