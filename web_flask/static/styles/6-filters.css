@@ -61,6 +61,8 @@
     justify-content: space-between;
     overflow-y: auto;
     max-height: 300px;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
 }
 .locations .popover h2 {
     padding-top: 8px;
@@ -103,7 +105,9 @@
     justify-content: space-between;
     overflow-y: auto;
     max-height: 300px;
-
+    /* Hide the scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
 }
 .amenities li {
     padding-top: 30px;
@@ -117,4 +121,8 @@
     display: block;
     text-align: center;
     align-items: center;
+}
+
+.popover::-webkit-scrollbar {
+  display: none;
 }

@@ -15,12 +15,15 @@ article {
     border: #FF5A5F 1px solid;
     border-radius: 4px;
     text-align: center;
+    vertical-align: top;
 }
 article h2 {
     font-size: 30px;
     align-items: center;
     align-content: center;
     display: inline-block;
+    width: 70%;
+    text-align: start;
 }
 .price_by_night {
     display: grid;
@@ -33,7 +36,7 @@ article h2 {
     min-width: 60px;
     height: 60px;
     width: 60px;
-    font-size: 30px;
+    font-size: x-large;
     float: right;
 }
 .information {
@@ -74,9 +77,10 @@ article h2 {
 
 }
 .user {
-    display: flex;
+    display: block ruby;
     justify-content: left;
     margin: 20px 0 20px;
+    text-align: initial;
 }
 .description {
     display: flex;

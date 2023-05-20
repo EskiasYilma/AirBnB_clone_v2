@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>AirBnB Clone</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/4-common.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/3-header.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/3-footer.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/6-filters.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/8-places.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}">
+  </head>
+  <body>
+    <header>
+      <div class="logo"></div>
+    </header>
+    <div class="container">
+      <section class="filters">
+        <div class="locations">
+          <h3>States</h3>
+          <h4>&nbsp;</h4>
+          <ul class="popover">
+            {% for i in all_states|sort(attribute='name') %}
+            <li>
+              <h2>{{ i.name }}</h2>
+              <ul>
+                {% for j in i.cities|sort(attribute='name') %}
+                    <li>{{ j.name }}</li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="amenities">
+          <h3>Amenities</h3>
+          <h4>&nbsp;</h4>
+          <ul class="popover">
+            {% for i in all_amenities|sort(attribute='name') %}
+                <li>{{ i.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <button class="search">Search</button>
+      </section>
+      <section class="places">
+        <h1>Places</h1><br>
+        {% for i in all_places|sort(attribute='name') %}
+          <article>
+            <h2>{{i.name}}</h2>
+            <div class="price_by_night">${{i.price_by_night}}</div>
+            <div class="information">
+              <div class="max_guest"><p class="caption">{{ i.max_guest }} Guests</p></div>
+              {% if i.number_rooms == 1 %}
+                <div class="number_rooms"><p class="caption">1 Room</p></div>
+              {% else %}
+                <div class="number_rooms"><p class="caption">{{ i.number_rooms }} Rooms</p></div>
+              {% endif %}
+
+              {% if i.number_bathrooms == 1 %}
+              <div class="number_bathrooms"><p class="caption">1 Bathroom</p></div>
+              {% else %}
+              <div class="number_bathrooms"><p class="caption">{{ i.number_bathrooms }} Bathrooms</p></div>
+              {% endif %}
+            </div>
+            <div class="user">
+              <b>Owner: </b> <p> {{i.user.first_name}}</p>
+            </div>
+            <div class="description">{{i.description|safe}}</div>
+          </article>
+          {% endfor %}
+      </section>
+    </div>
+    <footer>
+      <div class="footer-text">Best School</div>
+    </footer>
+  </body>
+</html>
