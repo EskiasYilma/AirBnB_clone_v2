@@ -15,3 +15,6 @@ class Amenity(BaseModel, Base):
         name = Column(String(128), nullable=False)
     else:
         name = ""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
