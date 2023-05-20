@@ -11,19 +11,14 @@ from sqlalchemy.orm import relationship
 
 class State(BaseModel, Base):
     """State class"""
-    if getenv('HBNB_TYPE_STORAGE', 'fs') == 'db':
+    if getenv('HBNB_TYPE_STORAGE', "fs") == 'db':
         __tablename__ = "states"
         name = Column(String(128), nullable=False)
 
         cities = relationship("City", backref="state",
                               cascade="all, delete, delete-orphan")
+
     else:
-        name = ""
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-    if getenv("HBNB_TYPE_STORAGE") != "db":
         @property
         def cities(self):
             """Get a list of all related City objects"""
@@ -33,3 +28,7 @@ class State(BaseModel, Base):
                 if all_cities[c_id].state_id == self.id:
                     city_list.append(all_cities[c_id])
             return city_list
+        name = ""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
